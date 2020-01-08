@@ -10,12 +10,27 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        NavigationView{
+            List(landmarks) { landmark in
+                NavigationLink(destination: LandmarkDetail(landmark: landmark)){
+                    Image(landmark.thumbnailName).cornerRadius(8)
+                    VStack(alignment: .leading) {
+                        Text(landmark.name)
+                        Text(landmark.location)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }.navigationBarTitle(Text("世界地标"), displayMode: .large)
+            
+        }
     }
 }
 
+#if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+#endif
