@@ -27,6 +27,7 @@ struct LandmarkDetail: View {
                     .font(.largeTitle)
                     .foregroundColor(.secondary)
                     .padding()
+                    .transition(.move(edge: .trailing))
             }
         }.navigationBarTitle(Text(landmark.name),displayMode: .inline)
     }
