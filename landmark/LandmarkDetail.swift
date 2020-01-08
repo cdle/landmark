@@ -10,7 +10,7 @@ import SwiftUI
 
 struct LandmarkDetail: View {
     let landmark: Landmark
-    @State var zoomed = false
+    @State private var zoomed = false
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             Image(landmark.imageName)
