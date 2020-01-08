@@ -10,19 +10,24 @@ import SwiftUI
 
 struct LandmarkDetail: View {
     let landmark: Landmark
-    var zoomed = false
-    
+    @State var zoomed = false
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             Image(landmark.imageName)
                 .resizable()
-                .aspectRatio(contentMode: .fit)
-                
+                .aspectRatio(contentMode: zoomed ? .fill : .fit)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-            Text(landmark.location)
-                .font(.largeTitle)
-                .foregroundColor(.secondary)
-                .padding()
+                .onTapGesture {
+                    withAnimation(.easeInOut(duration: 1)) {
+                        self.zoomed.toggle()
+                    }
+                }
+            if !zoomed {
+                Text(landmark.location)
+                    .font(.largeTitle)
+                    .foregroundColor(.secondary)
+                    .padding()
+            }
         }.navigationBarTitle(Text(landmark.name),displayMode: .inline)
     }
 }
